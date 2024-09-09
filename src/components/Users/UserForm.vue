@@ -319,6 +319,8 @@
                 dense
                 outlined
                 ref="provinceRef"
+                lazy-rules
+                :rules="[(val) => !!val || 'Por favor indicar a Província']"
                 v-model="user.employee.locations[0].province"
                 :options="provinces"
                 option-value="id"
@@ -512,6 +514,9 @@ const init = () => {
       user.value.employee.partner.name === 'MISAU' ? 'SNS' : 'ONG';
   }
   user.value.role = roles.value.filter((item) => item.id === roleId.value)[0];
+  provinceService.getAll();
+  districtService.getAll();
+  healthFacilityService.getAllHealthFacilities();
 };
 onMounted(() => {
   init();
